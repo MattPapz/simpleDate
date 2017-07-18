@@ -9,13 +9,6 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
-`string luckRating;
-int loop = 10;
-bool single;
-char playerInput = '#';
-int randomStatus;
-int playerTry = 0;
-int playerScore = 0;`
 
 Syntax highlighted code block
 
