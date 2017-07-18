@@ -1,0 +1,107 @@
+#include "stdafx.h"
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <iostream>
+using namespace std;
+
+string luckRating;
+int loop = 10;
+bool single;
+char playerInput = '#';
+int randomStatus;
+int playerTry = 0;
+int playerScore = 0;
+
+
+int main()
+{
+	srand(time(NULL)); // ensures that numbers are truly random, (uses the system-time as a "seed", rather than one specifically).
+
+	cout << "Welcome to simple-date! Test your luck now and see if you can find the one." << endl;
+	cout << "You have 10 dates to try and find your match, good luck!\n" << endl;
+	cout << "Type: (p) to try your luck.." << endl;
+
+	while (loop != 5) // repeats the program until variable "loop" equals to 5, (default is 10).
+	{
+		
+		cin >> playerInput; // waits for the player's input, and applies it to variable "playerInput".
+
+		switch (playerInput)
+		{
+		case 'p':
+		{
+			randomStatus = rand() % 10 + 1; // rolls between 1 and 10, and applies that value to variable "randomStatus".
+
+			if ((randomStatus == 1) || (randomStatus == 10)) // only numbers 1 and 10 will find the right "man/woman". (20% chance).
+			{
+				single = false;
+			}
+			else
+			{
+				single = true; // all remaining values (2 - 9), declare the varible "single" as true, therefore resulting in a fail. (80% chance).
+			}
+
+			if (single == false)
+			{
+				if ((playerTry >= 0) && (playerTry <= 1))
+				{
+					luckRating = "Godly!";
+				}
+				if ((playerTry >= 2) && (playerTry <= 4))
+				{
+					luckRating = "Impressive!";
+				}
+				if ((playerTry >= 5) && (playerTry <= 8))
+				{
+					luckRating = "Unfortunate!";
+				}
+				if (playerTry == 9)
+				{
+					luckRating = "Shocking!";
+				}
+				if (playerTry != 0)
+				{
+					loop = 5; // variable "loop" is overwritten to 5, therefore, program will stop repeating.
+					cout << "Congratulations, you are no longer single!" << endl;
+					cout << "You found your match after " << playerTry << " dreadful date(s)." << endl;
+					cout << "Your dating luck is: " << luckRating << endl;
+				}
+				else
+				{
+					loop = 5; 
+					cout << "Congratulations, you are no longer single!" << endl;
+					cout << "You found your match on your very first date!" << endl;
+					cout << "Your dating luck is: " << luckRating << endl;
+				}
+			}
+			else
+			{
+				if (playerTry == 9)
+				{	
+					luckRating = "Imaginary";
+					cout << "You were unsuccessful in finding a match, and have no more dates remaining." << endl;
+					cout << "Your dating luck is: " << luckRating << endl;
+					loop = 5;
+				}
+				else //(playerTry != 10)
+				{
+					playerTry++;
+					cout << "Unfortunately, the date did not go as planned, you are currently still single.\n" << endl;
+					cout << "Attempts remaining: " << 10 - playerTry << endl;
+					cout << "Type: (p) to try again.." << endl;
+				}
+			}
+			break;
+		}
+		default:
+		{
+			cout << "The input you entered is invalid. Please type it correctly." << endl;
+		}
+
+		}
+
+	}
+
+	return 0;
+}
